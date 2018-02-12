@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">    
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><b>The Whole Thing</b></h1>
+            <h2><b>Fun Engine</b></h2>
+            <h2><b>Power Up Your Plan</b></h2>
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-header">
+                <button type="button" class="close modalClose" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-content">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close modalClose" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <p id="price-label" class="label">Price</p>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <p id="distance-label" class="label">Distance</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button type="button" class="btn price" data-value="free">Free</button>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button type="button" class="btn price" data-value="paid">Paid</button>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button type="button" class="btn range" data-value="3">Walking</button>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button type="button" class="btn range" data-value="30">Driving</button>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="food" class="thumbnail">
+                        <img class="topic" id="food" data-value="food" src="assets/images/burger.png" alt="food">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text1" class="text">Food</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="drinks" class="thumbnail">
+                        <img class="topic" id="drinks" data-value="drinks" src="assets/images/beer.png" alt="drinks">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text2" class="text">Drinks</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="comedy" class="thumbnail">
+                        <img class="topic" id="comedy" data-value="comedy" src="assets/images/comedy.png" alt="comedy">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text3" class="text">Comedy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="popular" class="thumbnail">
+                        <img class="topic" id="popular" data-value="popular" src="assets/images/popular.png" alt="popular">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text4" class="text">Popular</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="music" class="thumbnail">
+                        <img class="topic" id="music" data-value="music" src="assets/images/music2.png" alt="music">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text5" class="text">Music</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div id="images">
+                    <a href="#" data-value="expo" class="thumbnail">
+                        <img class="topic" id="expo" data-value="expo" src="assets/images/expo.png" alt="expo">
+                    </a>
+                    <div class="middle">
+                        <div id="image-text6" class="text">Expo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  id="map-space" class="col-xs-12 col-sm-6 col-md-12">
+                    <input id="pac-input" class="controls col-xs-12 col-sm-12 col-md-12" type="text" placeholder="Where do you want to go?">
+                    <div id="map" class="col-xs-12 col-sm-12 col-md-12"></div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div id="buttonContainer" class="col-xs-12 col-sm-12 col-md-2">
+                <a href="result.html" target="_blank">
+                    <button id="filter-search" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Now Search!</button>
+                </a>
+            <div class="col-md-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpyQP6rc0eC3wqaGZ9gXnUxQ6bKja4rd0&libraries=places,geometry&callback=initMap" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/app2.js"></script>
+</body>
+
+</html>
